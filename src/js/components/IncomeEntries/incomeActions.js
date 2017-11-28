@@ -1,4 +1,4 @@
-export function updateIncomeDescriptions(description) {
+export function updateIncomeDescription(description) {
     return {
         type: 'UPDATE_INCOME_DESCRIPTION',
         payload: { description }

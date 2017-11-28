@@ -28,6 +28,7 @@ export default class ExpenseEntries extends Component {
 
     handleAddExpense(event) {
         const { description, amount, dispatch } = this.props;
+        document.getElementById('expenseEntriesForm').reset();
         dispatch(addExpense(description, amount));
     };
 
@@ -38,7 +39,7 @@ export default class ExpenseEntries extends Component {
             <div className="card border-danger mb3">
                 <div className="card-header text-white bg-danger">Expense Entries</div>
                 <div className="card-body">
-                    <form>
+                    <form id='expenseEntriesForm'>
                         <div className="form-group">
                             <label htmlFor="expense-description">Description</label>
                             <input type="text" className='form-control' id='expense-description' value={ description } onChange={ this.handleDescriptionInput } />
@@ -60,8 +61,8 @@ export default class ExpenseEntries extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    lineItems.map(lineItem => (
-                                        <tr>
+                                    lineItems.map((lineItem, index) => (
+                                        <tr key={ index }>
                                             <td>{ lineItem.description }</td>
                                             <td>${ lineItem.amount.toFixed(2) }</td>
                                         </tr>

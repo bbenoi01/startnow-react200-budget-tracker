@@ -28,6 +28,7 @@ export default class IncomeEntries extends Component {
 
     handleAddIncome(event) {
         const { description, amount, dispatch } = this.props;
+        document.getElementById('incomeEntriesForm').reset();
         dispatch(addIncome(description, amount));
     };
 
@@ -38,7 +39,7 @@ export default class IncomeEntries extends Component {
             <div className="card border-success mb3">
                 <div className="card-header text-white bg-success">Income Entries</div>
                 <div className="card-body">
-                    <form>
+                    <form id='incomeEntriesForm'>
                         <div className="form-group">
                             <label htmlFor="income-description">Description</label>
                             <input type="text" className='form-control' id='income-description' value={ description } onChange={ this.handleDescriptionInput } />
@@ -60,8 +61,8 @@ export default class IncomeEntries extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    lineItems.map(lineItem => (
-                                        <tr>
+                                    lineItems.map((lineItem, index) => (
+                                        <tr key={ index }>
                                             <td>{ lineItem.description }</td>
                                             <td>${ lineItem.amount.toFixed(2) }</td>
                                         </tr>

@@ -11,25 +11,15 @@ const app = express();
 app.use(express.static(path.join(__dirname, '/../public')));
 app.use(express.static(path.join(__dirname, '/../dist')));
 
-app.listen(8888);
+app.listen(3000);
 
-const url = 'http://localhost:8888';
+const url = 'http://localhost:3000';
 
 
 describe('express', () => {
   beforeEach(() => {
     nightmare = new Nightmare();
   });
-
-  it('should have the correct page title', () =>
-    nightmare
-      .goto(url)
-      .evaluate(() => document.querySelector('body').innerText)
-      .end()
-      .then((text) => {
-        expect(text).to.equal('Hello World');
-      })
-  );
 
   it('returns the correct status code', () => axios.get(url)
     .then(response => expect(response.status === 200)));

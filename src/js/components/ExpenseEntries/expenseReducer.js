@@ -1,6 +1,6 @@
 const defaultState = {
-    description: ' ',
-    amount: ' ',
+    description: '',
+    amount: '',
     lineItems: []
 };
 
@@ -23,12 +23,13 @@ export default function ExpenseReducer (state = defaultState, action) {
         }
 
         case 'ADD_EXPENSE': {
+            const { description, amount } = action.payload;
             return {
-                description: ' ',
-                action: ' ',
+                description: '',
+                action: '',
                 lineItems: [
                     ...state.lineItems,
-                    { descriptions, amount }
+                    { description, amount }
                 ]
             };
         }
